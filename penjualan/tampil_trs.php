@@ -198,7 +198,8 @@
             include "koneksi.php";
 
             // Query untuk mengambil data dari tabel transaksi dan tabel barang
-            $join = "SELECT transaksi.kode_transaksi, transaksi.kode_brg, barang.nama_brg, barang.harga, transaksi.jumlah, transaksi.total_bayar, transaksi.tanggal FROM transaksi INNER JOIN barang ON transaksi.kode_brg = barang.kode_brg";
+            $join = "SELECT transaksi.kode_transaksi, transaksi.kode_brg, barang.nama_brg, barang.harga, transaksi.jumlah,
+             transaksi.total_bayar, transaksi.tanggal FROM transaksi INNER JOIN barang ON transaksi.kode_brg = barang.kode_brg";
 
             $data = mysqli_query($conn, $join);
 
