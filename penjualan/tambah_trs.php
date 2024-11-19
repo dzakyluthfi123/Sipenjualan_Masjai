@@ -145,10 +145,9 @@
     if (isset($_POST['simpan'])) {
         $kode_transaksi = $_POST['kodetrs'];
         $kode_barang = $_POST['kodebrg'];
-        $jumlahbrg = $_POST['jumlah']; //jumlah dari form transaksi
+        $jumlahbrg = $_POST['jumlah']; 
         $tanggal = $_POST['tanggal'];
 
-        // mengambil data barang berdasarkan kode_barang
         $tampil_barang = mysqli_query($conn, "SELECT * FROM barang WHERE kode_brg = '$kode_barang'");
         $data = mysqli_fetch_array($tampil_barang);
         $nama_barang = $data['nama_brg'];
@@ -157,15 +156,13 @@
 
         $total_harga = $jumlahbrg * $harga;
 
-        if ($jumlahbrg > $jumlah) { //jika jumlah yang diinput lebih besar dari jumlah yang ada di tabel barang
-            echo "<script>alert('Stok tidak cukup')</script>";
+        if ($jumlahbrg > $jumlah) {
+            echo "Stok Tidak Cukup";
         } else {
-            // Insert data ke tabel transaksi
             $simpan = mysqli_query($conn, "INSERT INTO transaksi VALUES ('$kode_transaksi','$kode_barang', '$jumlahbrg','$total_harga','$tanggal')");
             if ($simpan) {
-                // jika berhasil disimpan, update tabel barang
                 $update_barang = mysqli_query($conn, "UPDATE barang SET jumlah = jumlah - $jumlahbrg WHERE kode_brg = '$kode_barang'");
-                echo "<script>alert('Berhasil Disimpan')</script>";
+                echo "Berhasil Disimpan";
             } else {
                 echo "gagal";
             }
