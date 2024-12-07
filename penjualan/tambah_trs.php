@@ -166,8 +166,9 @@
             } else {
                 echo "gagal";
             }
-        }
-        header("Location:tampil_trs.php");
+        }header("Location:tampil_trs.php");
+        exit();
+        
     }
     ?>
 </body>
